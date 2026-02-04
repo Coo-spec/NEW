@@ -1,52 +1,35 @@
-'use client';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+"use client";
+
+import Link from "next/link";
 
 export default function SignupPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const router = useRouter();
-
-  const handleSignup = async () => {
-    const res = await fetch('/api/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-    if (res.ok) router.push('/auth/signin');
-    else setError('Email already exists or signup failed');
-  };
-
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
-      <div className="bg-white shadow p-6 rounded w-full max-w-sm">
-        <h2 className="text-xl font-semibold mb-4 text-center">Create Account</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 mb-3 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 mb-3 border rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
-        <button
-          onClick={handleSignup}
-          className="w-full bg-blue-600 text-white py-2 rounded"
-        >
-          Sign up
-        </button>
-        <p className="text-center text-sm mt-4">
-          Already have an account? <Link href="/auth/signin" className="text-blue-600">Login</Link>
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-[#efeaff] via-[#cfeee7] to-[#ffd9cc] text-[#2e2a3a]">
+      <div className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-6 py-16">
+        <div className="w-full rounded-[32px] border border-white/60 bg-white/70 p-8 text-center shadow-[0_20px_60px_-35px_rgba(46,42,58,0.35)] backdrop-blur">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[#2e2a3a]/60">
+            Pastel todo studio
+          </p>
+          <h1 className="mt-4 text-3xl font-semibold">Create your account</h1>
+          <p className="mt-3 text-sm text-[#2e2a3a]/70">
+            Sign up directly from the main workspace to start saving and managing
+            your tasks instantly.
+          </p>
+          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link
+              href="/"
+              className="rounded-full bg-[#2e2a3a] px-6 py-3 text-sm font-semibold text-white"
+            >
+              Open signup form
+            </Link>
+            <Link
+              href="/"
+              className="rounded-full border border-[#2e2a3a]/20 bg-white px-6 py-3 text-sm font-semibold text-[#2e2a3a]"
+            >
+              I already have an account
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
